@@ -325,27 +325,5 @@ namespace PC_Client.Views
                 microphoneSource.Dispose();
             }            
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //string mac = "0C:00:91:88:C9:E3";
-            //string name = "SAMSUNG 1";
-
-            //Alert alert = new Alert(mac, name);
-            //alert.ShowDialog();
-
-            //if (alert.Confirm)
-            //{
-            //    AcceptPhone(mac);
-            //    this.Hide();
-            //    Thread.Sleep(100);
-
-            //    OpenConfig(name);
-                
-            //}
-            //else
-            //{
-            //    Reject(mac);
-            //}
-        }
     }
 }
