@@ -68,8 +68,9 @@
                 <!-- End: Button Close | Restore | Minimize -->
 
                 <Border Grid.Row="1">
-                    <Frame x:Name="PagesNavigation" NavigationUIVisibility="Hidden">
+                    <Frame x:Name="PagesNavigation" LoadCompleted="PagesNavigation_LoadCompleted" NavigationUIVisibility="Hidden">
                         <!-- Page Content -->
+                        
                     </Frame>
                 </Border>
             </Grid>

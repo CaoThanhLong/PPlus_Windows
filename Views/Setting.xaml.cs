@@ -20,6 +20,8 @@ namespace PC_Client.Views
     /// </summary>
     public partial class Setting : Page
     {
+        public bool isNotifyEnable { get; set; }
+        public bool isDisconnConfirm { get; set; }
         public Setting()
         {
             InitializeComponent();

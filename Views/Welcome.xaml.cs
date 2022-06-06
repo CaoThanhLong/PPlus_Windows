@@ -215,9 +215,10 @@ namespace PC_Client.Views
             if (alert.Confirm)
             {
                 AcceptPhone(mac);
-                this.Hide();
+                this.Visibility = Visibility.Hidden;
                 Thread.Sleep(100);
                 OpenConfig(name);
+
             }
             else
             {
@@ -239,7 +240,14 @@ namespace PC_Client.Views
         {
             Configuration config = new Configuration(name);
             config.ShowDialog();
-            this.Close();
+            if (config.IsDisconnect)
+            {
+                this.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void Reject(string mac)
@@ -319,25 +327,25 @@ namespace PC_Client.Views
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string mac = "0C:00:91:88:C9:E3";
-            string name = "SAMSUNG 1";
+            //string mac = "0C:00:91:88:C9:E3";
+            //string name = "SAMSUNG 1";
 
-            Alert alert = new Alert(mac, name);
-            alert.ShowDialog();
+            //Alert alert = new Alert(mac, name);
+            //alert.ShowDialog();
 
-            if (alert.Confirm)
-            {
-                AcceptPhone(mac);
-                this.Hide();
-                Thread.Sleep(100);
+            //if (alert.Confirm)
+            //{
+            //    AcceptPhone(mac);
+            //    this.Hide();
+            //    Thread.Sleep(100);
 
-                OpenConfig(name);
+            //    OpenConfig(name);
                 
-            }
-            else
-            {
-                Reject(mac);
-            }
+            //}
+            //else
+            //{
+            //    Reject(mac);
+            //}
         }
     }
 }

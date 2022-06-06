@@ -28,7 +28,9 @@ namespace PC_Client.Views
 
         private void Disconnect(object sender, RoutedEventArgs e)
         {
-            IsDisconnect = true;
+            this.IsDisconnect = true;
+            (this.Tag as Configuration).IsDisconnect = this.IsDisconnect;
+            (this.Tag as Configuration).Close();
         }
     }
 }

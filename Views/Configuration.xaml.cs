@@ -19,6 +19,8 @@ namespace PC_Client.Views
     /// </summary>
     public partial class Configuration : Window
     {
+        public bool IsDisconnect { get; set; }
+        public bool IsDisconnectNotify { get; set; }
         public Configuration(string phoneName)
         {
             InitializeComponent();
@@ -45,6 +47,19 @@ namespace PC_Client.Views
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void PagesNavigation_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
+            if ((PagesNavigation.Content as ConfigPage) != null)
+            {
+                (PagesNavigation.Content as ConfigPage).Tag = this;
+            }
+            else
+            {
+                (PagesNavigation.Content as Setting).Tag = this;
+            }
         }
     }
 }
