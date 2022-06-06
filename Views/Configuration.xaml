@@ -34,11 +34,11 @@
 
                     <StackPanel Grid.Row="3">
                         <!--<RadioButton x:Name="rdHome" IsChecked="True" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource home}" Click="rdHome_Click"/>-->
-                        <RadioButton x:Name="rdHome"  Content="Samsung Galaxy S22" IsChecked="True" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource home}" Click="rdPhone1_Click"/>
-                        <RadioButton x:Name="rdSounds" Content="LG G8 ThinQ" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource headphones}" Margin="0 5 0 5" Click="rdPhone2_Click"/>
+                        <RadioButton x:Name="phone_radio"  Content="Samsung Galaxy S22" IsChecked="True" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource home}" Click="rdPhone1_Click"/>
+                        <!--<RadioButton x:Name="rdSounds" Content="LG G8 ThinQ" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource headphones}" Margin="0 5 0 5" Click="rdPhone2_Click"/>-->
                         
                         <!--<RadioButton x:Name="rdHelp" Content="Help" Style="{DynamicResource BottomRadioButtonStyle}" Tag="{DynamicResource payment}" Margin="0 5 0 5" Click="rdHelp_Click"/>-->
-                        <RadioButton x:Name="rdSetting" Content="Setting" Style="{DynamicResource BottomRadioButtonStyle}" Tag="{DynamicResource payment}" Margin="0 5 0 5" Click="rdSetting_Click"/>
+                        <RadioButton x:Name="setting_radio" Content="Setting" Style="{DynamicResource BottomRadioButtonStyle}" Tag="{DynamicResource payment}" Margin="0 5 0 5" Click="rdSetting_Click"/>
                     </StackPanel>
 
                     <!--<StackPanel Grid.Row="3" VerticalAlignment="Bottom" Width="200" Margin="0 0 0 20">

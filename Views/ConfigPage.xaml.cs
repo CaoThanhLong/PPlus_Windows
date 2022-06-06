@@ -20,9 +20,15 @@ namespace PC_Client.Views
     /// </summary>
     public partial class ConfigPage : Page
     {
+        public bool IsDisconnect { get; set; }
         public ConfigPage()
         {
             InitializeComponent();
+        }
+
+        private void Disconnect(object sender, RoutedEventArgs e)
+        {
+            IsDisconnect = true;
         }
     }
 }

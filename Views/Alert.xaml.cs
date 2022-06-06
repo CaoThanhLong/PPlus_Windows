@@ -19,9 +19,24 @@ namespace PC_Client.Views
     /// </summary>
     public partial class Alert : Window
     {
-        public Alert()
+        public bool Confirm { get; set; }
+        public Alert(string mac, string name)
         {
             InitializeComponent();
+            mac_label.Text = mac;
+            name_label.Text = name;
+        }
+
+        private void Reject(object sender, RoutedEventArgs e)
+        {
+            Confirm = false;
+            this.Close();
+        }
+
+        private void Accept(object sender, RoutedEventArgs e)
+        {
+            Confirm = true;
+            this.Close();
         }
     }
 }

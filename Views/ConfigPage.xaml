@@ -50,7 +50,8 @@
                 Background="LightGray"
                 FontSize="12"
                 FontWeight="SemiBold"
-                Cursor="Hand">
+                Cursor="Hand"
+                Click="Disconnect">
             DISCONNECT
         </Button>
         

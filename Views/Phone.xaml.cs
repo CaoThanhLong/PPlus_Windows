@@ -20,6 +20,8 @@ namespace PC_Client.Views
     /// </summary>
     public partial class Phone : UserControl
     {
+        public string Mac { get; set; }
+        public string Name { get; set; }
         public Phone()
         {
             InitializeComponent();

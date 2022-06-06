@@ -15,12 +15,14 @@
     <Window.Icon>
         <DrawingImage />
     </Window.Icon>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="1.4*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
@@ -65,7 +67,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
- 
+
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" 
@@ -78,7 +80,7 @@
                        TextAlignment="Center"
                        xml:space="preserve">IP address: 
             </TextBlock>
-            
+
             <TextBlock Grid.Row="0" 
                        Grid.Column="1" 
                        FontSize="20" 
@@ -86,7 +88,8 @@
                        HorizontalAlignment="Left"
                        FontFamily="Tahoma"
                        TextWrapping="Wrap"
-                       TextAlignment="Center">
+                       TextAlignment="Center"
+                       x:Name="ip_label">
                 192.168.137.145
             </TextBlock>
 
@@ -107,11 +110,32 @@
                        HorizontalAlignment="Left"
                        FontFamily="Tahoma"
                        TextWrapping="Wrap"
-                       TextAlignment="Left">
+                       TextAlignment="Left"
+                       x:Name="port_label">
                 8886
             </TextBlock>
         </Grid>
 
-        
+        <Grid Grid.Row="5"
+              Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Background="LightGray"
+                        FontSize="12"
+                        FontWeight="SemiBold"
+                        Cursor="Hand"
+                        Foreground="red"
+                        Margin="30 10 10 10" Click="Button_Click">
+                    Capture webcam
+                </Button>
+
+                <TextBox Grid.Column="1"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

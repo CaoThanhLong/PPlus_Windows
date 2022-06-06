@@ -42,7 +42,7 @@ namespace PC_Client.Models
             return Json.Stringify(obj);
         }
 
-        public static string Reject(string ip, string mac)
+        public static string Reject(string mac)
         {
             dynamic obj = new ExpandoObject();
             obj.type = Type.pc_reject.ToString();

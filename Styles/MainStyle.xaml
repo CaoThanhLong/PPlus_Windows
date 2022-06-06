@@ -100,9 +100,9 @@
 
                             <!-- Text -->
                             <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0"
-                                                Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
-                                                FontWeight="{TemplateBinding FontWeight}"
-                                                FontSize="{TemplateBinding FontSize}"/>
+                                        Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                                        FontWeight="{TemplateBinding FontWeight}"
+                                        FontSize="{TemplateBinding FontSize}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>

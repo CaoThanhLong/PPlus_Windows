@@ -9,6 +9,7 @@ using System.Dynamic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -20,7 +21,7 @@ namespace PC_Client.Views
     public partial class Welcome : Window
     {
         static string ip;
-        static int port = 8886;
+        static string port = "8886";
         private Process process = new Process();
         private ServerConnection connection;
 
@@ -62,7 +63,10 @@ namespace PC_Client.Views
         private void SetupConnection()
         {
             ip = GetLocalIpAddress();
-            Console.WriteLine(ip);
+
+            ip_label.Text = ip;
+            port_label.Text = port.ToString();
+
             connection = new ServerConnection(ip, port.ToString());
             connection.WebSocket.Connect();
             connection.WebSocket.OnMessage += WebSocket_OnMessage;
@@ -142,8 +146,8 @@ namespace PC_Client.Views
                 //remoteAudioTrack.AudioFrameReady += RemoteAudioTrack_AudioFrameReady;
             };
 
-            //peerConnection.LocalSdpReadytoSend += PeerConnection_LocalSdpReadytoSend;
-            //peerConnection.IceCandidateReadytoSend += PeerConnection_IceCandidateReadytoSend;
+            peerConnection.LocalSdpReadytoSend += PeerConnection_LocalSdpReadytoSend;
+            peerConnection.IceCandidateReadytoSend += PeerConnection_IceCandidateReadytoSend;
         }
 
         private void SetUpTransceiver()
@@ -203,6 +207,24 @@ namespace PC_Client.Views
             }
         }
 
+        private void ConnectionConfirm(string mac, string name)
+        {
+            Alert alert = new Alert(mac, name);
+            alert.ShowDialog();
+
+            if (alert.Confirm)
+            {
+                AcceptPhone(mac);
+                this.Hide();
+                Thread.Sleep(100);
+                OpenConfig(name);
+            }
+            else
+            {
+                Reject(mac);
+            }
+        }
+
         private void AcceptPhone(string mac)
         {
             var pcName = Environment.MachineName;
@@ -213,11 +235,57 @@ namespace PC_Client.Views
             connection.SendMessage(message);
         }
 
+        private void OpenConfig(string name)
+        {
+            Configuration config = new Configuration(name);
+            config.ShowDialog();
+            this.Close();
+        }
+
+        private void Reject(string mac)
+        {
+            var pcName = Environment.MachineName;
+            var os = Environment.OSVersion.ToString();
+            string message = PCMessage.Reject(mac);
+        }
+
         private void DeleteWebRTCConnection()
         {
             peerConnection.Close();
             peerConnection.Dispose();
             peerConnection = null;
+        }
+
+        private void PeerConnection_IceCandidateReadytoSend(IceCandidate candidate)
+        {
+            Console.WriteLine("PC send candidate");
+            string iceCandidate = PCMessage.Candidate(currentMac, candidate);
+
+            bool result = connection.SendMessage(iceCandidate);
+
+            if (!result)
+            {
+                Console.WriteLine("Sever died");
+            }
+        }
+
+        private void PeerConnection_LocalSdpReadytoSend(SdpMessage message)
+        {
+            Console.WriteLine("PC send answer");
+            message.Type = SdpMessageType.Answer;
+
+            dynamic sdpAnswer = new ExpandoObject();
+
+            sdpAnswer.type = SdpMessageType.Answer.ToString().ToLower();
+            sdpAnswer.sdp = message.Content;
+
+            string answer = PCMessage.Answer(currentMac, sdpAnswer);
+            bool result = connection.SendMessage(answer);
+
+            if (!result)
+            {
+                Console.WriteLine("Sever died");
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -248,6 +316,28 @@ namespace PC_Client.Views
                 localAudioTrack.Dispose();
                 microphoneSource.Dispose();
             }            
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string mac = "0C:00:91:88:C9:E3";
+            string name = "SAMSUNG 1";
+
+            Alert alert = new Alert(mac, name);
+            alert.ShowDialog();
+
+            if (alert.Confirm)
+            {
+                AcceptPhone(mac);
+                this.Hide();
+                Thread.Sleep(100);
+
+                OpenConfig(name);
+                
+            }
+            else
+            {
+                Reject(mac);
+            }
         }
     }
 }

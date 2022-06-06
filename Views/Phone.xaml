@@ -35,22 +35,41 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             FontFamily="Tahoma"
-     
+            x:Name="name_label"
             >
             SAMSUNG A20
         </TextBlock>
 
-        <TextBlock 
-            Grid.Row="2" 
-            Grid.Column="2" 
-            FontSize="14" 
-            Foreground="Gray"
-            HorizontalAlignment="Left"
-            VerticalAlignment="top"
-            FontFamily="Tahoma"
-            
-            >
-            MAC Address: 2C:54:91:88:C9:E3
-        </TextBlock>
+        <Grid Grid.Row="2"
+              Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                FontSize="14" 
+                Foreground="Gray"
+                HorizontalAlignment="Left"
+                VerticalAlignment="top"
+                FontFamily="Tahoma">
+                MAC Address: 
+            </TextBlock>
+
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                FontSize="14" 
+                Foreground="Gray"
+                HorizontalAlignment="Left"
+                VerticalAlignment="top"
+                FontFamily="Tahoma"
+                x:Name="mac_label">
+                2C:54:91:88:C9:E3
+            </TextBlock>
+        </Grid>
+        
     </Grid>
 </UserControl>

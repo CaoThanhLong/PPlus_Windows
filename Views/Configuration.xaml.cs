@@ -19,10 +19,10 @@ namespace PC_Client.Views
     /// </summary>
     public partial class Configuration : Window
     {
-        public Configuration()
+        public Configuration(string phoneName)
         {
             InitializeComponent();
-
+            phone_radio.Content = phoneName;
             PagesNavigation.Navigate(new System.Uri("Views/ConfigPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
